@@ -1,0 +1,60 @@
+@page
+@model EventHub.Pages.CS360.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue[0].address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue[0].city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue[0].state)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue[0].capacity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Venue) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capacity)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.venue_id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.venue_id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.venue_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

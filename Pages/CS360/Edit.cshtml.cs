@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using EventHub.Data;
+using EventHub.Models;
+
+namespace EventHub.Pages.CS360
+{
+    public class EditModel : PageModel
+    {
+        private readonly EventHub.Data.EventHubContext _context;
+
+        public EditModel(EventHub.Data.EventHubContext context)
+        {
+            _context = context;
+        }
+
+        [BindProperty]
+        public Venue Venue { get; set; } = default!;
+
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var venue =  await _context.Venue.FirstOrDefaultAsync(m => m.venue_id == id);
+            if (venue == null)
+            {
+                return NotFound();
+            }
+            Venue = venue;
+            return Page();
+        }
+
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more information, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(Venue).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VenueExists(Venue.venue_id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool VenueExists(int id)
+        {
+            return _context.Venue.Any(e => e.venue_id == id);
+        }
+    }
+}

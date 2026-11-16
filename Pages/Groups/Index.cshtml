@@ -1,0 +1,44 @@
+@page
+@model EventHub.Pages.Groups.IndexModel
+
+@{
+    ViewData["Title"] = "Event Groups";
+}
+
+<h1>Event Groups</h1>
+
+<p>Live data from the MongoDB Atlas <code>event_groups</code> collection.</p>
+
+<form method="get" class="mb-3">
+    <label for="sort">Sort by:</label>
+    <select id="sort" name="Sort" onchange="this.form.submit()">
+        <option value="name" selected="@(Model.Sort != "capacity")">Name (A–Z)</option>
+        <option value="capacity" selected="@(Model.Sort == "capacity")">Largest capacity</option>
+    </select>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Event ID</th>
+            <th>Owner</th>
+            <th>Maximum Members</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model.Groups)
+        {
+            <tr>
+                <td>@group.Name</td>
+                <td>@group.Description</td>
+                <td>@group.EventId</td>
+                <td>@group.Owner</td>
+                <td>@group.MaxMembers</td>
+                <td>@group.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -7,6 +7,7 @@ namespace EventHub.Models;
 public class EventCalendar
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int event_id { get; set; }
 
     public int venue_id { get; set; }

@@ -1,11 +1,11 @@
 @page
-@model EventHub.Pages.Roles.CreateModel
+@model EventHub.Pages.Events.CreateModel
 
 @{
-    ViewData["Title"] = "Create Role";
+    ViewData["Title"] = "Create Event";
 }
 
-<h1>Create Role</h1>
+<h1>Create Event</h1>
 
 <hr />
 <div class="row">
@@ -14,27 +14,47 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Role.role_id" class="control-label"></label>
-                <input asp-for="Role.role_id" class="form-control" />
-                <span asp-validation-for="Role.role_id" class="text-danger"></span>
+                <label asp-for="EventCalendar.venue_id" class="control-label">Venue</label>
+                <select asp-for="EventCalendar.venue_id" asp-items="Model.VenueOptions" class="form-control">
+                    <option value="">-- Select a venue --</option>
+                </select>
+                <span asp-validation-for="EventCalendar.venue_id" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Role.parent_role_id" class="control-label"></label>
-                <input asp-for="Role.parent_role_id" class="form-control" />
-                <span asp-validation-for="Role.parent_role_id" class="text-danger"></span>
+                <label asp-for="EventCalendar.organizer_id" class="control-label"></label>
+                <input asp-for="EventCalendar.organizer_id" class="form-control" />
+                <span asp-validation-for="EventCalendar.organizer_id" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Role.role_name" class="control-label"></label>
-                <input asp-for="Role.role_name" class="form-control" />
-                <span asp-validation-for="Role.role_name" class="text-danger"></span>
+                <label asp-for="EventCalendar.name" class="control-label"></label>
+                <input asp-for="EventCalendar.name" class="form-control" />
+                <span asp-validation-for="EventCalendar.name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Role.description" class="control-label"></label>
-                <input asp-for="Role.description" class="form-control" />
-                <span asp-validation-for="Role.description" class="text-danger"></span>
+                <label asp-for="EventCalendar.description" class="control-label"></label>
+                <input asp-for="EventCalendar.description" class="form-control" />
+                <span asp-validation-for="EventCalendar.description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EventCalendar.date" class="control-label"></label>
+                <input asp-for="EventCalendar.date" class="form-control" />
+                <span asp-validation-for="EventCalendar.date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EventCalendar.time" class="control-label"></label>
+                <input asp-for="EventCalendar.time" class="form-control" />
+                <span asp-validation-for="EventCalendar.time" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EventCalendar.category" class="control-label"></label>
+                <input asp-for="EventCalendar.category" class="form-control" />
+                <span asp-validation-for="EventCalendar.category" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-3">

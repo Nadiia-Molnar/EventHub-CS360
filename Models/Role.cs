@@ -7,6 +7,7 @@ namespace EventHub.Models;
 public class Role
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int role_id { get; set; }
 
     public int? parent_role_id { get; set; }
@@ -17,6 +18,5 @@ public class Role
     [StringLength(500)]
     public string? description { get; set; }
 
-    [Timestamp]
-    public byte[] created_at { get; set; } = Array.Empty<byte>();
+    public DateTime created_at { get; set; }
 }

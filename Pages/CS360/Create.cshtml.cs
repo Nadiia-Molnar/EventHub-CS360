@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using EventHub.Data;
 using EventHub.Models;
 
@@ -34,6 +35,9 @@ namespace EventHub.Pages.CS360
             {
                 return Page();
             }
+
+            Venue.venue_id =
+            (await _context.Venue.MaxAsync(v => (int?)v.venue_id) ?? 0) + 1;
 
             _context.Venue.Add(Venue);
             await _context.SaveChangesAsync();

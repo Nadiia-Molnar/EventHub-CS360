@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,6 +39,10 @@ public class CreateModel : PageModel
         EventCalendar.created_at = DateTime.Now;
         EventCalendar.updated_at = DateTime.Now;
 
+        EventCalendar.event_id =
+            (await _context.EventCalendars
+                .MaxAsync(e => (int?)e.event_id) ?? 0) + 1;
+
         _context.EventCalendars.Add(EventCalendar);
         await _context.SaveChangesAsync();
 
@@ -51,6 +56,10 @@ public class CreateModel : PageModel
             .OrderBy(venue => venue.name)
             .ToListAsync();
 
-        VenueOptions = new SelectList(venues, "venue_id", "name");
+        VenueOptions = new SelectList(
+            venues,
+            "venue_id",
+            "name"
+        );
     }
 }

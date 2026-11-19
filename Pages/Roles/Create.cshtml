@@ -14,11 +14,6 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Role.role_id" class="control-label"></label>
-                <input asp-for="Role.role_id" class="form-control" />
-                <span asp-validation-for="Role.role_id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Role.parent_role_id" class="control-label"></label>
                 <input asp-for="Role.parent_role_id" class="form-control" />
                 <span asp-validation-for="Role.parent_role_id" class="text-danger"></span>

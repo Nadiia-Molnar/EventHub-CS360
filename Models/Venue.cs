@@ -7,6 +7,7 @@ namespace EventHub.Models;
 public class Venue
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int venue_id { get; set; }
 
     public string name { get; set; } = string.Empty;
